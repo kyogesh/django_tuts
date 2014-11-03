@@ -1,0 +1,4 @@
+{{poll.question}}
+{% for each in poll.choice_set.all %}
+    <li>{{each}} :       {{each.votes}}vote{{each.votes|pluralize}}</li>
+{% endfor %}
