@@ -14,16 +14,17 @@ def detail(request, person_id):
 
 def edit(request, person_id):
     person = get_object_or_404(Person, pk=person_id)
-    personform = PersonForm(instance=person)
+    initial_data = {'name':person.name, 'birth_place':person.birth_place, 'birth_date':person.birth_date}
+    personform = PersonForm(initial=initial_data)
     return render(request, 'formtut/edit.html', {'person': person, 'personform':personform})
 
 def save(request, person_id):
     person = get_object_or_404(Person, pk=person_id)
-    personform = PersonForm(instance=person)
-    pf=PersonForm(request.POST)
-    if pf.is_valid():
-        print "Valid data", pf
+    personform = PersonForm(request.POST, instance=person)
+    if personform.is_valid():
+        print "Valid data"
+        personform.save()
     else:
         print 'Invalid Data'
-    pf.save()
+    
     return HttpResponseRedirect(reverse('forms:detail', args=(person.id,)))

@@ -1,4 +1,13 @@
-{{poll.question}}
-{% for each in poll.choice_set.all %}
-    <li>{{each}} :       {{each.votes}}vote{{each.votes|pluralize}}</li>
-{% endfor %}
+{% load url from future %}
+{{ poll.question }}
+
+{% if err_msg %} <p><strong>{{ err_msg }}</strong></p> {% endif %}
+
+<form action="{% url 'myapp:vote' poll.id %}" method="POST">
+    {% csrf_token %}
+    {% for choice in poll.choice_set.all %}
+        <input type="radio" name="choice" id="choice{{forloop.counter}}" value="{{ choice.id }}"/>
+        <label for="choice{{ forloop.counter }}"> {{choice.choice}}</label> </br>
+    {% endfor %} 
+    <input type="submit" value="Vote"/>
+</form>
