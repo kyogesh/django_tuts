@@ -1,0 +1,5 @@
+{% load url from future %}
+{% for person in persons %}
+    <li><a href="{% url 'forms:detail' person.id %}">{{ person }}</a></li>
+    
+{% endfor %}
