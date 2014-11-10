@@ -28,7 +28,7 @@ def vote(request, poll_id):
         return render(request, 'detail.html',
                      {'poll': poll,
                      'err_msg': "You didn't selected any choice."}
-            )
+                     )
 
     else:
         selected_choice.votes += 1
