@@ -1,6 +1,7 @@
 <strong> Edit the following fields for {{person.name}}: </strong>
 <form action="{% url 'forms:save' person.id %}" method="POST">
     {% csrf_token %}
+    <input id="id_image" type="file" class="" name="image">
     {{personform}}
     <input type="submit" value="Save..."/>
 </form>

@@ -1,5 +1,6 @@
 {% load url from future %}
 <p>Name:   {{ person.name }} </p>
+<img src="{{person.image}}">
 <p>Birth Date: {{ person.birth_date }} </p>
 <p>Birth Place: {{ person.birth_place }}</p> 
 <a href="{% url 'forms:edit' person.id %}">Edit details...</a>

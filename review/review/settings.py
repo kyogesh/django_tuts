@@ -18,7 +18,7 @@ SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '_gua$5*@v8w3x%p_y+oyip$6!ftg%dcioce^9)8d8y8&h6psox'
+SECRET_KEY = os.environ['REVIEW_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myapp',
+    'formtut',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -62,7 +63,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'yogesh',
         'USER': 'yogesh',
-        'PASSWORD': 'allright',
+        'PASSWORD': os.environ['PG_PASSWORD'],
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }

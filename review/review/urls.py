@@ -7,6 +7,6 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'review.views.home', name='home'),
     url(r'^myapp/', include('myapp.urls', namespace='myapp')),
-
+    url(r'^forms/', include('formtut.urls', namespace='forms')),
     url(r'^admin/', include(admin.site.urls)),
 )
