@@ -7,6 +7,4 @@ env:
 install:
   - pip install -r requirements.txt --use-mirrors
 script:
-  - pep8 formstut
-  - pep8 myapp
-
+  - pep8 django_tuts
