@@ -2,9 +2,10 @@ from django import forms
 
 from .models import Person
 
+
 class PersonForm(forms.ModelForm):
 
     class Meta:
 
         model = Person
-        fields = ['name', 'birth_date', 'birth_place',]
+        fields = ['name', 'birth_date', 'birth_place', ]

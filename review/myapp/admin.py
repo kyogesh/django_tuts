@@ -21,7 +21,7 @@ class PollAdmin(admin.ModelAdmin):
 
 
 class ChoiceAdmin(admin.ModelAdmin):
-    
+   
     list_display = ['choice', 'votes']
 
 admin.site.register(Poll, PollAdmin)
