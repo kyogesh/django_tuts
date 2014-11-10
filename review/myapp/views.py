@@ -6,7 +6,7 @@ from .models import Poll, Choice
 
 def index(request):
     polls = Poll.objects.all()
-    return render(request,'index.html', {'polls':polls})
+    return render(request, 'index.html', {'polls': polls})
 
 def detail(request, poll_id):
     poll = get_object_or_404(Poll, pk=poll_id)
@@ -21,9 +21,9 @@ def vote(request, poll_id):
     try:
         selected_choice = poll.choice_set.get(pk=request.POST['choice'])
     except(KeyError, Choice.DoesNotExist):
-        return render(request, 'detail.html', {'poll':poll, 'err_msg':"You didn't selected any choice."})
+        return render(request, 'detail.html', {'poll': poll, 'err_msg': "You didn't selected any choice."})
 
     else:
         selected_choice.votes += 1
         selected_choice.save()
-        return HttpResponseRedirect(reverse('myapp:results', args=(poll.id,)))
+        return HttpResponseRedirect(reverse('myapp:results', args=(poll.id, )))
