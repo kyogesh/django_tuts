@@ -8,9 +8,6 @@ env:
 install:
   - pip install -r requirements.txt --use-mirrors
 script:
-<<<<<<< HEAD
   - pep8 formstut
   - pep8 myapp
-=======
-  - pep8 --exclude=migrations magazine
->>>>>>> e91807dba0768114fc37e7c568f37525ccb9ccb1
+
