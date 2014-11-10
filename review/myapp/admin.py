@@ -8,6 +8,7 @@ class ChoiceTabularInline(admin.TabularInline):
     model = Choice
     extras = 3
 
+
 class PollAdmin(admin.ModelAdmin):
 
     list_display = ['question', 'pub_date', 'was_published_recently']
@@ -17,6 +18,7 @@ class PollAdmin(admin.ModelAdmin):
     ]
     search_fields = ['question']
     inlines = [ChoiceTabularInline]
+
 
 class ChoiceAdmin(admin.ModelAdmin):
     
