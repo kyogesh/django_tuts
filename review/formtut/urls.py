@@ -10,4 +10,4 @@ urlpatterns = patterns('',
                            views.edit, name='edit'),
                        url(r'^save/(?P<person_id>\d+)/$',
                            views.save, name='save'),
-)
+                       )

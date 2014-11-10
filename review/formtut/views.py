@@ -19,12 +19,13 @@ def detail(request, person_id):
 def edit(request, person_id):
     person = get_object_or_404(Person, pk=person_id)
     initial_data = {
-                   'name': person.name,
-                   'birth_place': person.birth_place,
-                   'birth_date': person.birth_date, }
+                'name': person.name,
+                'birth_place': person.birth_place,
+                'birth_date': person.birth_date, }
     personform = PersonForm(initial=initial_data)
-    return render(request, 'formtut/edit.html',
-                 {'person': person, 'personform': personform})
+    return render(request, 'formtut/edit.html', {
+                 'person': person, 'personform': personform
+                })
 
 
 def save(request, person_id):
