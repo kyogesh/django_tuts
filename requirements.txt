@@ -1,4 +1,7 @@
 Django==1.6.8
+Pillow==2.6.1
 argparse==1.2.1
+ipython==2.3.0
+pep8==1.5.7
 psycopg2==2.5.4
 wsgiref==0.1.2
