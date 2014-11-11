@@ -26,11 +26,16 @@ def vote(request, poll_id):
         selected_choice = poll.choice_set.get(pk=request.POST['choice'])
     except(KeyError, Choice.DoesNotExist):
         return render(request, 'detail.html',
-                     {'poll': poll,
-                     'err_msg': "You didn't selected any choice."}
+                     {
+                     'poll': poll,
+                     'err_msg': "You didn't selected any choice."
+                     }
                      )
 
     else:
         selected_choice.votes += 1
         selected_choice.save()
-        return HttpResponseRedirect(reverse('myapp:results', args=(poll.id, )))
+        return HttpResponseRedirect(reverse('myapp:results',
+                                           args=(poll.id, )
+                                           )
+                                   )
