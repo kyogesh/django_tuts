@@ -9,10 +9,10 @@ Welcome {% if user.is_authenticated %}  {{ user }}. {% else %} world. {% endif %
 {% endfor %}
 </br>
 {% if user.is_authenticated %}
-    <a href="#">Add Poll...</a> </br>
-    <a href="{% url 'myapp:signoff' %}">Signout</a> </br>
+    <a href="{% url 'myapp:addpoll' %}">Add Poll...</a> </br>
+    <a href="{% url 'myapp:signoff' %}">Sign out</a> </br>
 {% else %}
     <a href="{% url 'myapp:register' %}">Register</a> </br>
-    <a href="{% url 'myapp:signin' %}">Signin</a>
+    <a href="{% url 'myapp:signin' %}">Sign in</a>
 {% endif %}
 {% endblock content %}

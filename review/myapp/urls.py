@@ -15,4 +15,6 @@ urlpatterns = patterns('',
                        url(r'^signin/$',
                            views.signin, name='signin'),
                        url(r'^signoff/$',
-                           views.signoff, name='signoff'), )
+                           views.signoff, name='signoff'),
+                       url(r'^addpoll',
+                           views.addpoll, name='addpoll'), )

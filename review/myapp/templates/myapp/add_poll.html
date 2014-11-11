@@ -1,0 +1,13 @@
+{% extends 'review/base.html' %}
+{% load url from future %}
+
+{% block content %}
+<h1>Create a new Poll </h1>
+
+<form method="post" action="{% url 'myapp:addpoll' %}">
+    {% csrf_token %}
+    {{ poll_form }} </br>
+    Choices: <input type="text" name="choices" placeholder="Comma separated choices"></br>
+    <input type="submit" value="add...">
+</form>
+{% endblock %}

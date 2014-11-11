@@ -4,8 +4,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
+from django.utils import timezone
 
-from .forms import PollForm, ChoiceForm, PollUserForm
+from .forms import PollForm, PollUserForm
 from .models import Poll, Choice, PollUser
 
 
@@ -91,3 +92,28 @@ def signoff(request):
     logout(request)
 
     return HttpResponseRedirect(reverse('myapp:index'))
+
+
+@login_required
+def addpoll(request):
+
+    if request.method == 'POST':
+        poll_form = PollForm(data=request.POST)
+        choices = request.POST['choices']
+        if poll_form.is_valid:
+            new_poll = poll_form.save(commit=False)
+            new_poll.pub_date = timezone.now()
+            new_poll.save()
+            for each in choices.split(','):
+                choice = Choice(poll_id=new_poll.id, choice=each)
+                choice.save()
+            return HttpResponseRedirect(reverse('myapp:detail',
+                                                args=(new_poll.id, )))
+        else:
+            poll_form.errors
+    else:
+        poll_form = PollForm()
+
+    return render(request,
+                  'myapp/add_poll.html',
+                  {'poll_form': poll_form, })

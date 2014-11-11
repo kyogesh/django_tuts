@@ -1,10 +1,12 @@
 from django import forms
 from django.contrib.auth.models import User
 
-from .models import Poll, Choice, PollUser
+from .models import Poll, PollUser
 
 
 class PollUserForm(forms.ModelForm):
+
+    password = forms.CharField(widget=forms.PasswordInput())
 
     class Meta:
         model = PollUser
@@ -15,11 +17,4 @@ class PollForm(forms.ModelForm):
 
     class Meta:
         model = Poll
-        fields = ('question', 'pub_date', )
-
-
-class ChoiceForm(forms.ModelForm):
-
-    class Meta:
-        model = Choice
-        fields = ('poll', 'choice', 'votes', )
+        fields = ('question', )
