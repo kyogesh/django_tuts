@@ -1,4 +1,8 @@
+{% extends 'review/base.html' %}
 {% load url from future %}
+{% block project_title %} Form tutorial {% endblock project_title %}
+
+{% block content %}
 {{ poll.question }}
 
 {% if err_msg %} <p><strong>{{ err_msg }}</strong></p> {% endif %}
@@ -11,3 +15,4 @@
     {% endfor %} 
     <input type="submit" value="Vote"/>
 </form>
+{% endblock content%}

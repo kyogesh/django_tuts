@@ -7,17 +7,17 @@ from .models import Poll, Choice
 
 def index(request):
     polls = Poll.objects.all()
-    return render(request, 'index.html', {'polls': polls})
+    return render(request, 'myapp/index.html', {'polls': polls})
 
 
 def detail(request, poll_id):
     poll = get_object_or_404(Poll, pk=poll_id)
-    return render(request, 'detail.html', {'poll': poll})
+    return render(request, 'myapp/detail.html', {'poll': poll})
 
 
 def results(request, poll_id):
     poll = get_object_or_404(Poll, pk=poll_id)
-    return render(request, 'results.html', {'poll': poll})
+    return render(request, 'myapp/results.html', {'poll': poll})
 
 
 def vote(request, poll_id):
@@ -25,7 +25,7 @@ def vote(request, poll_id):
     try:
         selected_choice = poll.choice_set.get(pk=request.POST['choice'])
     except(KeyError, Choice.DoesNotExist):
-        return render(request, 'detail.html',
+        return render(request, 'myapp/detail.html',
                       {'poll': poll,
                        'err_msg': "You didn't selected any choice."})
 

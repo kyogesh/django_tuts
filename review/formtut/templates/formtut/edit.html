@@ -1,3 +1,7 @@
+{% extends 'review/base.html' %}
+{% load url from future %}
+{% block project_title %} Form tutorial {% endblock project_title %}
+{% block content %}
 <strong> Edit the following fields for {{person.name}}: </strong>
 <form action="{% url 'forms:save' person.id %}" method="POST">
     {% csrf_token %}
@@ -5,3 +9,4 @@
     {{personform}}
     <input type="submit" value="Save..."/>
 </form>
+{% endblock content %}

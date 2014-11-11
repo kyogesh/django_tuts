@@ -1,5 +1,9 @@
-<h1>{{ poll.question }}</h1>
+{% extends 'review/base.html' %}
+{% load url from future %}
+{% block project_title %} Form tutorial {% endblock project_title %}
 
+{% block content %}
+<h1>{{ poll.question }}</h1>
 <ul>
 {% for choice in poll.choice_set.all %}
     <li>{{ choice.choice }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
@@ -7,3 +11,4 @@
 </ul>
 
 <a href="{% url 'myapp:detail' poll.id %}">Vote again?</a>.
+{% endblock content %}

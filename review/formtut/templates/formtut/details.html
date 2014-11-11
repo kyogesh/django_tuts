@@ -1,6 +1,10 @@
+{% extends 'review/base.html' %}
 {% load url from future %}
+{% block project_title %} Form tutorial {% endblock project_title %}
+{% block content %}
 <p>Name:   {{ person.name }} </p>
 <img src="{{person.image}}">
 <p>Birth Date: {{ person.birth_date }} </p>
 <p>Birth Place: {{ person.birth_place }}</p> 
 <a href="{% url 'forms:edit' person.id %}">Edit details...</a>
+{% endblock content %}

@@ -1,6 +1,0 @@
-{% load url from future %}
-<strong>Polls</strong>
-{% for each in polls %}
-    <li><a href="{% url 'myapp:detail' each.id %}"> {{each.question}} </a></li>
-
-{% endfor %}
