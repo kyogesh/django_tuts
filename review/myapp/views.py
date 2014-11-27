@@ -107,7 +107,7 @@ def addpoll(request):
     if request.method == 'POST':
         poll_form = PollForm(data=request.POST)
         choices = request.POST['choices']
-        if poll_form.is_valid:
+        if poll_form.is_valid and choices:
             new_poll = poll_form.save(commit=False)
             new_poll.pub_date = timezone.now()
             new_poll.save()
@@ -118,6 +118,8 @@ def addpoll(request):
                                                 args=(new_poll.id, )))
         else:
             poll_form.errors
+    elif request.method=='GET' and not request.user:
+        return HttpResponseRedirect(reverse('myapp:signin'))
     else:
         poll_form = PollForm()
 

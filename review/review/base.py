@@ -78,6 +78,11 @@ USE_L10N = True
 
 USE_TZ = True
 
+#Login and Login Redirect settings
+
+LOGIN_URL = '/myapp/signin'
+LOGIN_REDIRECT_URL = 'myapp:signin'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
