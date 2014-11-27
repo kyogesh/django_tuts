@@ -7,7 +7,11 @@
 <form method="post" action="{% url 'myapp:addpoll' %}">
     {% csrf_token %}
     {{ poll_form }} </br>
-    Choices: <input type="text" name="choices" placeholder="Comma separated choices"></br>
-    <input type="submit" value="add...">
+    <div id="choices" >
+        Choice 1
+        <input type="text" name="choice-1" id="choice-1">
+    </div>
+    <a href="#" id="add">add...</a></br>
+    <input type="submit" value="Add Poll">
 </form>
 {% endblock %}

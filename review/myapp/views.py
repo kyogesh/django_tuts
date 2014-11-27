@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.utils import timezone
 
+from ipdb import set_trace
+
 from .forms import PollForm, PollUserForm
 from .models import Poll, Choice, PollUser
 
@@ -103,16 +105,19 @@ def signoff(request):
 
 @login_required
 def addpoll(request):
-
     if request.method == 'POST':
         poll_form = PollForm(data=request.POST)
-        choices = request.POST['choices']
+        print request.POST
+        choices=[e for e in request.POST.keys() if e.startswith('choice')]
+        choices.sort()
         if poll_form.is_valid and choices:
             new_poll = poll_form.save(commit=False)
             new_poll.pub_date = timezone.now()
+            new_poll.created_by = PollUser.objects.get(username=request.user)
             new_poll.save()
-            for each in choices.split(','):
-                choice = Choice(poll_id=new_poll.id, choice=each)
+            for each in choices:
+                choice = Choice(poll_id=new_poll.id,
+                                choice=request.POST[each])
                 choice.save()
             return HttpResponseRedirect(reverse('myapp:detail',
                                                 args=(new_poll.id, )))

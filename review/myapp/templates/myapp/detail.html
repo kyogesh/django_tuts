@@ -3,7 +3,7 @@
 {% block project_title %} Polls tutorial {% endblock project_title %}
 
 {% block content %}
-{{ poll.question }}
+{{ poll.question }} <b>Created by: </b><b>{{poll.created_by}}</b>
 
 {% if err_msg %} <p><strong>{{ err_msg }}</strong></p> {% endif %}
 

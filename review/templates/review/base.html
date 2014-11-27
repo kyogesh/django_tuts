@@ -1,7 +1,10 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
     <head>
         <title>{% block project_title %} My Project {% endblock project_title %}</title>
+        <script src="{% static 'js/jquery-2.1.1.js' %}"></script>
+        <script src="{% static 'js/myapp.js' %}"></script>
     </head>
 
     <body>
