@@ -4,8 +4,8 @@
 
 {% block content %}
 {{ poll.question }} <b>Created by: </b><b>{{poll.created_by}}</b>
-
-{% if err_msg %} <p><strong>{{ err_msg }}</strong></p> {% endif %}
+</br>
+{% if err_msg %} <font color="red"><strong>***{{ err_msg }}</strong></font> {% endif %}
 
 <form action="{% url 'myapp:vote' poll.id %}" method="POST">
     {% csrf_token %}

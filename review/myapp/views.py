@@ -26,20 +26,29 @@ def results(request, poll_id):
     poll = get_object_or_404(Poll, pk=poll_id)
     return render(request, 'myapp/results.html', {'poll': poll})
 
-
+@login_required
 def vote(request, poll_id):
     poll = get_object_or_404(Poll, pk=poll_id)
     try:
-        selected_choice = poll.choice_set.get(pk=request.POST['choice'])
-    except(KeyError, Choice.DoesNotExist):
-        return render(request, 'myapp/detail.html',
-                      {'poll': poll,
-                       'err_msg': "You didn't selected any choice."})
-
+        user = PollUser.objects.get(username=request.user)
+    except:
+        user = None
+    if poll.created_by != user:
+        print "same User"
+        try:
+            selected_choice = poll.choice_set.get(pk=request.POST['choice'])
+        except(KeyError, Choice.DoesNotExist):
+            return render(request, 'myapp/detail.html',
+                          {'poll': poll,
+                           'err_msg': "You didn't selected any choice."})
+        else:
+            selected_choice.votes += 1
+            selected_choice.save()
     else:
-        selected_choice.votes += 1
-        selected_choice.save()
-        return HttpResponseRedirect(reverse('myapp:results',
+        return render(request, 'myapp/detail.html',
+                          {'poll': poll,
+                           'err_msg': "You can not vote on your own Poll."})
+    return HttpResponseRedirect(reverse('myapp:results',
                                             args=(poll.id, )))
 
 

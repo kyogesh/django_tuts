@@ -3,7 +3,7 @@
 
 {% block project_title %} Polls Tutorial {% endblock %}
 {% block content %}
-    <h1>Login to Rango</h1>
+    <h1>Login to Rango</h1> Login to create Polls and vote. </br></br>
 
     <form id="login_form" method="post" action="{% url 'myapp:signin' %}">
         {% csrf_token %}
