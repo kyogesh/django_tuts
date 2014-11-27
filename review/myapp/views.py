@@ -43,24 +43,31 @@ def vote(request, poll_id):
 
 def register(request):
     registered = False
+    password_matched = None
     if request.method == 'POST':
         user_form = PollUserForm(data=request.POST)
 
         if user_form.is_valid():
-            user = user_form.save()
-            user.set_password(user.password)
-            user.save()
+            user = user_form.save(commit=False)
+            print request.POST['confirm_password'] == user.password
+            if user.password == request.POST['confirm_password']:
+                password_matched = True
+                print "Password matches"
+                user.set_password(user.password)
+                user.save()
+                registered = True
+            else:
+                password_matched = False                
+                registered=False
 
-            registered = True
-        else:
-            print user_form.errors
     else:
         user_form = PollUserForm()
 
     return render(request,
                   'myapp/register.html',
                   {'user_form': user_form,
-                   'registered': registered})
+                   'registered': registered,
+                   'password_matched':password_matched})
 
 
 def signin(request):
