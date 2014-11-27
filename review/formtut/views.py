@@ -31,7 +31,6 @@ def save(request, person_id):
     personform = PersonForm(request.POST, instance=person)
     if personform.is_valid():
         print "Valid data"
-        person.image = personform.image
         personform.save()
     else:
         print 'Invalid Data'
