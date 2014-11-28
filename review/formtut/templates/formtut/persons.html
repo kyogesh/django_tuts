@@ -1,0 +1,9 @@
+{% load url from future %}
+<strong>Persons</strong> </br>
+{% if persons %}
+    {% for person in persons %}
+        <li><a href="{% url 'forms:detail' person.id %}">{{person}}</a></li>
+    {% endfor %}
+{% else %}
+    No entry in the database.
+{% endif %}

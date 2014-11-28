@@ -9,4 +9,6 @@ urlpatterns = patterns('',
                        url(r'^edit/(?P<person_id>\d+)/$',
                            views.edit, name='edit'),
                        url(r'^save/(?P<person_id>\d+)/$',
-                           views.save, name='save'), )
+                           views.save, name='save'),
+                       url(r'^addnew/$',
+                           views.add_new, name='addnew'), )

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <link href="{% static 'css/bootstrap-fluid-adj.css' %}" rel="stylesheet">
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
+        <link href="{% static 'css/bootstrap-responsive.css' %}" rel="stylesheet">
+
+        <title>{% block project_title %} Forms Tutorial {% endblock project_title %}</title>
+        
+        <style type="text/css">
+            input[type="radio"] {
+                vertical-align:baseline;
+            }
+        </style>
+        
+        <script src="{% static 'js/jquery-2.1.1.js' %}"></script>
+        <script src="{% static 'js/myapp.js' %}"></script>
+    </head>
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+       <div class="navbar-inner">
+           <div class="container">
+               <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                   <span class="icon-bar"></span>
+                   <span class="icon-bar"></span>
+                   <span class="icon-bar"></span>
+               </button>
+               <a class="brand" href="/forms/">Forms</a>
+    
+               <div class="nav-collapse collapse">
+                   <ul class="nav pull-right">
+                   </ul>
+                   <ul class="nav">
+                        <li><a href="{% url 'forms:addnew' %}">Add new Person</a></li>
+                   </ul>
+               </div>
+               <!--/.nav-collapse -->
+           </div>
+       </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span3">
+                <div class="well sidebar-nav">
+                    {% include "formtut/persons.html" with persons=persons %}
+                </div>
+                <!--/.well -->
+            </div>
+            <!--/span-->
+            <div class="span9">
+                {% block content %}
+                    This is body_block's default content.
+                {% endblock %}
+            </div>
+            <!--/span-->
+        </div>
+        <!--/row-->
+    </div>
+    <!--/.fluid-container-->
+    
+    <hr>
+
+<footer>
+    <div class="container">
+        <p>&copy; Made with Django 2014</p>
+    </div>
+</footer>
+
+</body>
+</html>

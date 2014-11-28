@@ -1,0 +1,11 @@
+{% extends 'formtut/base.html' %}
+{% load url from future %}
+
+{% block content %}
+<h1>Create a new Entry </h1>
+<form method="post" action="{% url 'forms:addnew' %}">
+    {% csrf_token %}
+    {{ personform }} </br>
+    <input type="submit" value="Add">
+</form>
+{% endblock %}

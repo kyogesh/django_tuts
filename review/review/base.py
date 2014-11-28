@@ -77,7 +77,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-#Login and Login Redirect settings
+# Login and Login Redirect settings
 
 LOGIN_URL = '/myapp/signin'
 LOGIN_REDIRECT_URL = 'myapp:signin'

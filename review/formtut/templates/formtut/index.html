@@ -1,6 +1,6 @@
-{% extends 'review/base.html' %}
+{% extends 'formtut/base.html' %}
 {% load url from future %}
-{% block project_title %} Form tutorial {% endblock project_title %}
+
 {% block content %}
 {% for person in persons %}
     <li><a href="{% url 'forms:detail' person.id %}">{{ person }}</a></li>
