@@ -1,10 +1,10 @@
-{% extends 'review/base.html' %}
+{% extends 'myapp/base.html' %}
 {% load url from future %}
 
-{% block project_title %} Polls Tutorial {% endblock %}
 {% block content %}
-    <h1>Login to Rango</h1> Login to create Polls and vote. </br></br>
+    <h1>Polls User Login </h1> Login to create Polls and vote. </br></br>
 
+    <font color="red">{% if login_err %}{{ login_err }} {% endif %}</font>
     <form id="login_form" method="post" action="{% url 'myapp:signin' %}">
         {% csrf_token %}
         Username: <input type="text" name="username" value="" size="50" />

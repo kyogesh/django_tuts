@@ -1,0 +1,12 @@
+{% load url from future %}
+
+<strong>Latest Polls:</strong> </br>
+<ul class="nav nav-list">
+    {% if latest_polls %}
+        {% for poll in latest_polls %}
+            <li><a href="{% url 'myapp:detail' poll.id%}">{{ poll.question }}</a></li>
+        {% endfor %}
+    {% else %}
+        <li>No Polls at present.</li>
+   {% endif %}
+</ul>

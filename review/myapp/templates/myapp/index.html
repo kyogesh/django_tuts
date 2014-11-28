@@ -1,18 +1,9 @@
-{% extends 'review/base.html' %}
+{% extends 'myapp/base.html' %}
 {% load url from future %}
-{% block project_title %} Polls tutorial {% endblock project_title %}
+
 {% block content %}
-Welcome {% if user.is_authenticated %}  {{ user }}. {% else %} world. {% endif %} </br> 
-<strong>Polls</strong>
 {% for each in polls %}
     <li><a href="{% url 'myapp:detail' each.id %}"> {{each.question}} </a></li>
 {% endfor %}
 </br>
-{% if user.is_authenticated %}
-    <a href="{% url 'myapp:addpoll' %}">Add Poll...</a> </br>
-    <a href="{% url 'myapp:signoff' %}">Sign out</a> </br>
-{% else %}
-    <a href="{% url 'myapp:register' %}">Register</a> </br>
-    <a href="{% url 'myapp:signin' %}">Sign in</a>
-{% endif %}
 {% endblock content %}

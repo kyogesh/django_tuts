@@ -1,4 +1,4 @@
-{% extends 'review/base.html' %}
+{% extends 'myapp/base.html' %}
 {% load url from future %}
 
 {% block content %}
@@ -10,8 +10,9 @@
     <div id="choices" >
         Choice 1
         <input type="text" name="choice-1" id="choice-1">
+        <i class="icon-plus-sign"></i></br>
+        <font color="red">{% if choice_err %} {{ choice_err }}{% endif %}</font>
     </div>
-    <a href="#" id="add">add...</a></br>
     <input type="submit" value="Add Poll">
 </form>
 {% endblock %}

@@ -1,17 +1,16 @@
-{% extends 'review/base.html' %}
+{% extends 'myapp/base.html' %}
 {% load url from future %}
-{% block project_title %} Polls tutorial {% endblock project_title %}
 
 {% block content %}
-{{ poll.question }} <b>Created by: </b><b>{{poll.created_by}}</b>
+{{ poll.question }} <b>Created by: </b>{{poll.created_by}}
 </br>
 {% if err_msg %} <font color="red"><strong>***{{ err_msg }}</strong></font> {% endif %}
 
 <form action="{% url 'myapp:vote' poll.id %}" method="POST">
     {% csrf_token %}
     {% for choice in poll.choice_set.all %}
-        <input type="radio" name="choice" id="choice{{forloop.counter}}" value="{{ choice.id }}"/>
-        <label for="choice{{ forloop.counter }}"> {{choice.choice}}</label> </br>
+        <p><input type="radio" name="choice" id="choice{{forloop.counter}}" value="{{ choice.id }}"/>
+        {{choice.choice}}</p>
     {% endfor %} 
     <input type="submit" value="Vote"/>
 </form>
