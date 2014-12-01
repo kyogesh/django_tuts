@@ -36,3 +36,15 @@ class Choice(models.Model):
 
     def __unicode__(self):
         return self.choice
+
+
+class Vote(models.Model):
+
+    poll = models.ForeignKey(Poll)
+    voted_for = models.ForeignKey(Choice)
+    user = models.ForeignKey(PollUser)
+
+    def __unicode__(self):
+        return self.user.username + \
+            " voted " + self.voted_for.choice + \
+            " in poll " + self.poll.question
